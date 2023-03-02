@@ -9,6 +9,16 @@
         text-align: center;
         vertical-align: middle;
     }
+
+    #board tr:nth-child(even) td:nth-child(even) {
+        background-color: black;
+        color: white;
+    }
+
+    #board tr:nth-child(2n + 1):not(:last-child) td:nth-child(2n + 1):not(:first-child) {
+        background-color: black;
+        color: white;
+    }
 </style>
 
 <img src="igor.png">
@@ -38,8 +48,6 @@
                 }
                 else if(y != 8) {
                     if(((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
-                        cell.style.backgroundColor = squaresColor;
-                        cell.style.color = "white";
                     }
 
                     text = document.createTextNode(fields[x - 1] + (8 - y))
