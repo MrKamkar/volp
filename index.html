@@ -1,1 +1,57 @@
+<style>
+    #board {
+        border-collapse: collapse;
+    }
+
+    #board td {
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
 <img src="igor.png">
+<table id="board"></table>
+<script>
+    board = document.getElementById('board');
+    fields = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    borderStyle = "1px solid black";
+    squaresColor = "black";
+
+    function generateBoard() {
+
+        var tBody = document.createElement("tbody");
+        for(let y = 0; y <= 8; y++) {
+            row = document.createElement("tr");
+            for(let x = 0; x <= 8; x++) {
+                cell = document.createElement("td")
+                if(x == 0 && y != 8) { 
+                    text = document.createTextNode(8 - y);
+                    cell.appendChild(text);
+                    cell.style.borderRight = borderStyle;
+                }
+                else if(y == 8 && x != 0) {
+                    text = document.createTextNode(fields[x - 1]);
+                    cell.appendChild(text);
+                    cell.style.borderTop = borderStyle;
+                }
+                else {
+                    if((((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) && y != 8) {
+                        cell.style.backgroundColor = squaresColor;
+                    }
+
+                    if(y == 7 && x != 0) cell.style.borderBottom = borderStyle;
+                    if(x == 8 && y != 8) cell.style.borderRight = borderStyle;
+                    if(y == 0 && x != 0) cell.style.borderTop = borderStyle;
+                }
+
+                row.appendChild(cell);
+            }
+            tBody.appendChild(row);
+        }
+        board.appendChild(tBody);
+    }
+
+    generateBoard(false);
+</script>
