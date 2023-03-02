@@ -36,10 +36,14 @@
                     cell.appendChild(text);
                     cell.style.borderTop = borderStyle;
                 }
-                else {
-                    if((((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) && y != 8) {
+                else if(y != 8) {
+                    if(((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
                         cell.style.backgroundColor = squaresColor;
+                        cell.style.color = "white";
                     }
+
+                    text = document.createTextNode(fields[x - 1] + (8 - y))
+                    cell.appendChild(text);
 
                     if(y == 7 && x != 0) cell.style.borderBottom = borderStyle;
                     if(x == 8 && y != 8) cell.style.borderRight = borderStyle;
